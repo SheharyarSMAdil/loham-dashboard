@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Device ID</title>
+
+    <style>
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            width: 70%;
+            border: 1px solid #ddd;
+        }
+
+        th,
+        td {
+            text-align: left;
+            padding: 16px;
+            text-align: -webkit-center;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body onload="renderPIDs()">
+    <center>
+        <h3 style="padding-top: 15px;">
+            Remove Device ID
+        </h3>
+        <div id="dvTable">
+
+        </div>
+    </center>
+
+    <script>
+        const electron = require('electron');
+        const { ipcRenderer } = electron;
+
+        function renderPIDs() {
+            // const table = document.querySelector('#pid_table');
+            const storedData = JSON.parse(localStorage.getItem('info')) || [];
+
+            var head = new Array();
+            head.push(["ID", "Alias", "Action"]);
+
+            //Create a HTML Table element.
+            var table = document.createElement("table");
+            table.border = "1";
+
+            //Get the count of columns.
+            var columnCount = head[0].length;
+
+            //Add the header row.
+            var row = table.insertRow(-1);
+            for (var i = 0; i < columnCount; i++) {
+                var headerCell = document.createElement("th");
+                headerCell.innerHTML = head[0][i];
+                row.appendChild(headerCell);
+            }
+
+            for (var i = 0; i < storedData.length; i++) {
+                let pid = '';
+                row = table.insertRow(-1);
+                for (var j = 0; j < columnCount - 1; j++) {
+                    var cell = row.insertCell(-1);
+                    var myData = Object.values(storedData[i]);
+                    cell.innerHTML = myData[j];
+                    if (j == 0)
+                        pid = myData[j];
+                }
+                var removeBtn = row.insertCell(-1);
+                removeBtn.innerHTML = `<button id="${pid}" onclick="deleteID(this.id)">Remove</button>`;
+            }
+
+            var dvTable = document.getElementById("dvTable");
+            dvTable.innerHTML = "";
+            dvTable.appendChild(table);
+        }
+
+        function deleteID(pid) {
+            let storedData = JSON.parse(localStorage.getItem('info')) || [];
+            console.log(pid)
+
+            storedData = storedData.filter(item => item.pid !== pid);
+            localStorage.setItem('info', JSON.stringify(storedData));
+
+            console.log(ipcRenderer);
+            ipcRenderer.send('pid:deleted', 1);
+
+            renderPIDs()
+        }
+    </script>
+</body>
+
+</html>

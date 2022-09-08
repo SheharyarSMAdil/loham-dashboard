@@ -1,0 +1,14 @@
+{
+  "name": "ees_online_dashboard",
+  "version": "1.0.0",
+  "description": "Online Dashboard",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Ahad",
+  "license": "ISC",
+  "dependencies": {
+    "electron": "^20.1.0"
+  }
+}

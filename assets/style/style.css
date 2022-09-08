@@ -1,0 +1,226 @@
+[data-theme='light-blue']
+{
+    --theme-color:#0072bc;
+    --theme-color-light:#0072bc22;
+    --valid:#00bc64;
+    --valid-light:#00bc6422;
+    --invalid:#c40f0f;
+    --invalid-light:#c40f0f22;
+}
+
+
+body{
+    background-color: #e6effe;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 70%;
+    border: 1px solid #ddd;
+}
+
+th,
+td {
+    text-align: left;
+    padding: 16px;
+    text-align: -webkit-center;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.container{
+    margin:0.9rem 3rem;
+}
+
+.options{
+    /* width: 50vw; */
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    gap: 1rem;
+}
+
+.ee-button{
+    all: unset;
+    background-color: var(--theme-color);
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: white;
+    font-family: 'Alegreya Sans SC', sans-serif;
+    font-weight: 600;
+    font-size: large;
+    box-shadow: 15px 15px 25px #2224;
+}
+
+.ee-button:active{
+    box-shadow: none;
+}
+
+
+#downloadData{
+    margin-left: auto;
+
+}
+
+.deviceWrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.deviceWrapper label{
+    font-size: 1.8rem;
+    padding: 1rem;
+    font-family: 'Comfortaa', cursive;
+}
+
+.cardWrapper{
+    display: flex;
+    gap: 1.2rem;
+    /* justify-content: center; */
+    align-items: center;
+}
+
+.card{
+    width: 250px;
+    height: 170px;
+    border:2px solid #fff;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: -15px -15px 25px #fffa, 15px 15px 25px #4442;
+    color: var(--theme-color);
+}
+
+.card[data-threshold='valid']{
+    color: var(--valid);
+    border-bottom: 3px solid var(--valid);
+} 
+.card[data-threshold='valid'] .cardHeader{
+    background-color: var(--valid-light);
+} 
+.card[data-threshold='invalid']{
+    color: var(--invalid);
+    border-bottom: 3px solid var(--invalid);
+} 
+.card[data-threshold='invalid'] .cardHeader{
+    background-color: var(--invalid-light);
+} 
+
+.card .cardHeader{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--theme-color-light);
+    padding: 2px 10px;
+    border-radius: 5px;
+}
+.card .cardHeader p{
+    margin: 0;
+    font-size: 2rem;
+    font-family: 'Alegreya Sans SC', sans-serif;
+    font-weight: 600;
+
+}
+.card .cardBody{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.card .cardBody p{
+    margin: 0;
+    font-size: 4rem;
+    font-family: 'Comfortaa', cursive;
+
+}
+
+.thresholdCard{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    border:2px solid #fff;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: column;
+    box-shadow: -15px -15px 25px #fffa, 15px 15px 25px #4442;
+    width: 250px;
+    height: 300px;
+    z-index: 20;
+    /* background-color: #e6effe; */
+    backdrop-filter:  blur(20px);
+    display: none;
+    padding: 30px;
+    font-family: 'Comfortaa', cursive;
+}
+
+.thresholdCard .closeButton{
+    all: unset;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: rgb(202, 21, 21);
+    color: white;
+    font-size: 0.6rem;
+
+}
+
+.thresholdCard h2{
+    font-family: 'Alegreya Sans SC', sans-serif;
+    font-weight: 600;
+}
+
+.thresholdButton{
+    width: calc(100% - 40px);
+    text-align: center;
+}
+
+.tCardHeader{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 0.1rem;
+}
+.tCardHeader p, .tCardHeader h2{
+    margin: 0;
+}
+
+.tCardHeader p {
+    font-size: 0.8rem;
+}
+
+.tCardBody{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+select,input{
+    width: 100%;
+}
+
+.tCardBody .selectBox,.tCardBody .ee-input, button{
+    display: block;
+    width: 100%;
+    font-size: 1rem;
+    border-radius: 5px;
+    padding: 8px 10px;
+    border:2px solid var(--theme-color);
+}
+.tCardBody .ee-input{
+    width: calc(250px - 20px);
+}

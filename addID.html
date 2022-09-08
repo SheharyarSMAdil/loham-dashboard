@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Device ID</title>
+</head>
+
+<body>
+    <center>
+        <h3 style="padding-top: 15px;">
+            Device ID
+        </h3>
+
+        <input type="text" id="pid" placeholder="Enter Device ID">
+        <br><br>
+        <input type="text" id="alias" placeholder="Enter Alias">
+        <br>
+        <br>
+        <button id="device_pid">Save</button>
+    </center>
+
+    <script>
+        const electron = require('electron');
+        const { ipcRenderer } = electron;
+
+        document.getElementById("device_pid").addEventListener("click", receiveID);
+
+        function receiveID() {
+            let storedData=JSON.parse(localStorage.getItem('info')) || [];
+            const pid = document.querySelector('#pid').value;
+            const alias = document.querySelector('#alias').value;
+            var info = { "pid": pid, "alias": alias };
+            storedData.push(info);
+            console.log(info);
+            // Put the object into storage
+            localStorage.setItem('info', JSON.stringify(storedData));
+            
+            console.log(ipcRenderer);
+            ipcRenderer.send('pid:added', 1);
+
+            // let id="ENE0124";
+            
+            // storedData=storedData.filter(item=>item.pid!==id);
+            // localStorage.setItem('info', JSON.stringify(storedData));
+
+        }
+    </script>
+</body>
+
+</html>

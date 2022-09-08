@@ -1,0 +1,180 @@
+@font-face {
+    font-family: 'Alegreya Sans SC';
+    src: url('AlegreyaSansSC-ExtraBoldItalic.woff2') format('woff2'),
+        url('AlegreyaSansSC-ExtraBoldItalic.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Alegreya Sans SC';
+    src: url('AlegreyaSansSC-BoldItalic.woff2') format('woff2'),
+        url('AlegreyaSansSC-BoldItalic.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Alegreya Sans SC';
+    src: url('AlegreyaSansSC-Black.woff2') format('woff2'),
+        url('AlegreyaSansSC-Black.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Alegreya Sans SC';
+    src: url('AlegreyaSansSC-BlackItalic.woff2') format('woff2'),
+        url('AlegreyaSansSC-BlackItalic.woff') format('woff');
+    font-weight: 900;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Alegreya Sans SC';
+    src: url('AlegreyaSansSC-ExtraBold.woff2') format('woff2'),
+        url('AlegreyaSansSC-ExtraBold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Alegreya Sans SC';
+    src: url('AlegreyaSansSC-Bold.woff2') format('woff2'),
+        url('AlegreyaSansSC-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Alegreya Sans SC';
+    src: url('AlegreyaSansSC-LightItalic.woff2') format('woff2'),
+        url('AlegreyaSansSC-LightItalic.woff') format('woff');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Alegreya Sans SC';
+    src: url('AlegreyaSansSC-Medium.woff2') format('woff2'),
+        url('AlegreyaSansSC-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Alegreya Sans SC';
+    src: url('AlegreyaSansSC-ThinItalic.woff2') format('woff2'),
+        url('AlegreyaSansSC-ThinItalic.woff') format('woff');
+    font-weight: 100;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Alegreya Sans SC';
+    src: url('AlegreyaSansSC-Light.woff2') format('woff2'),
+        url('AlegreyaSansSC-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Comfortaa';
+    src: url('Comfortaa-Regular.woff2') format('woff2'),
+        url('Comfortaa-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Alegreya Sans SC';
+    src: url('AlegreyaSansSC-Thin.woff2') format('woff2'),
+        url('AlegreyaSansSC-Thin.woff') format('woff');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Alegreya Sans SC';
+    src: url('AlegreyaSansSC-Regular.woff2') format('woff2'),
+        url('AlegreyaSansSC-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Alegreya Sans SC';
+    src: url('AlegreyaSansSC-MediumItalic.woff2') format('woff2'),
+        url('AlegreyaSansSC-MediumItalic.woff') format('woff');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Alegreya Sans SC';
+    src: url('AlegreyaSansSC-Italic.woff2') format('woff2'),
+        url('AlegreyaSansSC-Italic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Comfortaa';
+    src: url('Comfortaa-SemiBold.woff2') format('woff2'),
+        url('Comfortaa-SemiBold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Comfortaa';
+    src: url('Comfortaa-Medium.woff2') format('woff2'),
+        url('Comfortaa-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Comfortaa';
+    src: url('Comfortaa-Regular.woff2') format('woff2'),
+        url('Comfortaa-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Comfortaa';
+    src: url('Comfortaa-Bold.woff2') format('woff2'),
+        url('Comfortaa-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Comfortaa';
+    src: url('Comfortaa-Light.woff2') format('woff2'),
+        url('Comfortaa-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+

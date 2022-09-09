@@ -106,6 +106,10 @@ const fetchServerData = () => {
 };
 
 const closeWindowHandler = () => {
+  document.getElementById("thresholdCard").style.width = "30px";
+  document.getElementById("thresholdCard").style.height = "30px";
+  document.getElementById("thresholdCard").style.borderRadius = "50%";
+
   document.getElementById("thresholdCard").style.transform =
     "scale(0) translate(0%,500%)";
 };
@@ -125,6 +129,10 @@ const validateThresholdHandler = () => {
 };
 
 const showThresholdCard = () => {
+  document.getElementById("thresholdCard").style.width = "250px";
+  document.getElementById("thresholdCard").style.height = "300px";
+  document.getElementById("thresholdCard").style.borderRadius = "10px";
+
   document.getElementById("thresholdCard").style.display = "flex";
   document.getElementById("thresholdCard").style.transform =
     "scale(1) translate(-50%,-50%)";

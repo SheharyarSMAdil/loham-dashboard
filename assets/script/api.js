@@ -47,16 +47,20 @@ const fetchServerData = () => {
         delete data.ts_client;
         delete data.ts_server;
 
-        console.log(data);
+        // console.log(data);
         let deviceWrapper = document.createElement("div");
         deviceWrapper.setAttribute("class", "deviceWrapper");
         deviceWrapper.setAttribute("id", "deviceWrapper");
         let paraList = [];
         Object.entries(data).forEach((item) => {
           paraList.push(item[0]);
-
+          console.table({
+            pid: info.pid,
+            threshold: +thresholdData[info.pid][item[0]],
+            curr: +item[1],
+          });
           let status = thresholdData[info.pid]
-            ? thresholdData[info.pid][item[0]] < item[1]
+            ? +thresholdData[info.pid][item[0]] < +item[1]
               ? "invalid"
               : "valid"
             : "";
@@ -102,7 +106,8 @@ const fetchServerData = () => {
 };
 
 const closeWindowHandler = () => {
-  document.getElementById("thresholdCard").style.display = "none";
+  document.getElementById("thresholdCard").style.transform =
+    "scale(0) translate(0%,500%)";
 };
 
 const validateThresholdHandler = () => {
@@ -121,6 +126,8 @@ const validateThresholdHandler = () => {
 
 const showThresholdCard = () => {
   document.getElementById("thresholdCard").style.display = "flex";
+  document.getElementById("thresholdCard").style.transform =
+    "scale(1) translate(-50%,-50%)";
   deviceList = JSON.parse(localStorage.getItem("info")).map(
     (device) => device.pid
   );

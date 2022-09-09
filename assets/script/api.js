@@ -54,11 +54,11 @@ const fetchServerData = () => {
         let paraList = [];
         Object.entries(data).forEach((item) => {
           paraList.push(item[0]);
-          console.table({
-            pid: info.pid,
-            threshold: +thresholdData[info.pid][item[0]],
-            curr: +item[1],
-          });
+          // console.table({
+          //   pid: info.pid,
+          //   threshold: +thresholdData[info.pid][item[0]],
+          //   curr: +item[1],
+          // });
           let status = thresholdData[info.pid]
             ? +thresholdData[info.pid][item[0]] < +item[1]
               ? "invalid"

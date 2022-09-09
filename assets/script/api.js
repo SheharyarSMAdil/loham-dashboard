@@ -118,19 +118,25 @@ const validateThresholdHandler = () => {
   let id = document.getElementById("deviceIds").value;
   let para = document.getElementById("devicePara").value;
   let threshold = document.getElementById("thresholdValue").value;
-  let thresholdData = JSON.parse(localStorage.getItem("threshold")) || {};
-  //   thresholdData = [];
-  if (thresholdData[id]) {
-    thresholdData[id] = { ...thresholdData[id], [para]: threshold };
+  let validationMsg = document.getElementById("validationMsg");
+
+  if (threshold) {
+    let thresholdData = JSON.parse(localStorage.getItem("threshold")) || {};
+    if (thresholdData[id]) {
+      thresholdData[id] = { ...thresholdData[id], [para]: threshold };
+    } else {
+      thresholdData = { ...thresholdData, [id]: { [para]: threshold } };
+    }
+    localStorage.setItem("threshold", JSON.stringify(thresholdData));
   } else {
-    thresholdData = { ...thresholdData, [id]: { [para]: threshold } };
+    validationMsg.style.display = "block";
+    validationMsg.innerHTML = "Please Enter Valid Value";
   }
-  localStorage.setItem("threshold", JSON.stringify(thresholdData));
 };
 
 const showThresholdCard = () => {
   document.getElementById("thresholdCard").style.width = "250px";
-  document.getElementById("thresholdCard").style.height = "300px";
+  document.getElementById("thresholdCard").style.height = "320px";
   document.getElementById("thresholdCard").style.borderRadius = "10px";
 
   document.getElementById("thresholdCard").style.display = "flex";
@@ -147,9 +153,26 @@ const showThresholdCard = () => {
     ).innerHTML += `<option value=${item}>${item}</option>`;
   });
   setParaHandler({ value: deviceList[0] });
+  setThresholdValue();
+};
+
+const setThresholdValue = () => {
+  console.log("getThreshold");
+  document.getElementById("validationMsg").style.display = "none";
+  try {
+    let devId = document.getElementById("deviceIds").value;
+    let para = document.getElementById("devicePara").value;
+    let threshold = JSON.parse(localStorage.getItem("threshold"));
+
+    document.getElementById("thresholdValue").value = threshold[devId][para];
+  } catch (err) {
+    console.log(err);
+    document.getElementById("thresholdValue").value = "0";
+  }
 };
 
 const setParaHandler = (e) => {
+  setThresholdValue();
   document.getElementById("devicePara").innerHTML = "";
   console.log(e.value);
   console.log(allParaStructure);

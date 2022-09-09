@@ -39,11 +39,15 @@
             id="deviceIds"
             onchange="setParaHandler(this)"
           ></select>
-          <select class="selectBox" id="devicePara"></select>
+          <select
+            class="selectBox"
+            id="devicePara"
+            onchange="setThresholdValue()"
+          ></select>
 
           <input
             class="ee-input"
-            type="text"
+            type="number"
             name="thresholdValue"
             id="thresholdValue"
           />
@@ -54,6 +58,7 @@
           >
             Submit
           </button>
+          <p class="validationMsg" id="validationMsg"></p>
         </div>
       </div>
     </div>

@@ -92,7 +92,7 @@ ipcMain.on('pid:added', function (e, status) {
 // Catch pid:deleted
 ipcMain.on('pid:deleted', function (e, status) {
     mainWindow.webContents.send('pid:deleted', status);
-    deleteWindow.close();
+    // deleteWindow.close();
 });
 
 // Create menu template

@@ -1,68 +1,63 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light-blue">
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Online Dashboard</title>
-    <!-- <style>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Online Dashboard</title>
+  <!-- <style>
         @import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@700&family=Comfortaa:wght@300&display=swap');
         </style> -->
-    <link rel="stylesheet" href="./assets/style/style.css" />
-    <link rel="stylesheet" href="./assets/style/fonts/stylesheet.css" />
-  </head>
+  <link rel="stylesheet" href="./assets/style/style.css" />
+  <link rel="stylesheet" href="./assets/style/fonts/stylesheet.css" />
+</head>
 
-  <body>
-    <div class="container">
-      <!-- <center> -->
-      <!-- <div id="info"></div>
+<body>
+  <div class="head">
+    <div class="company">
+      <img class="company-logo" src="./assets/img/lohum-logo.png">
+      <!-- <span class="company-name">Clean Tech pvt. ltd.</span> -->
+    </div>
+  </div>
+  <div class="options">
+    <div>
+      <button class="ee-button" id="downloadData">Fetch Data</button>
+      <button class="ee-button" id="setThreshold">Set Threshold</button>
+    </div>
+  </div>
+  <div class="container">
+
+    <!-- <div class="head">
+        <h1>Lohum Clean Tech PVT. LTD.</h1>
+      </div> -->
+    <!-- <center> -->
+    <!-- <div id="info"></div>
                 <div id="dvTable"> -->
-      <!-- </div>
+    <!-- </div>
             </center> -->
-      <div class="options">
-        <div>
-          <button class="ee-button" id="downloadData">Fetch Data</button>
-          <button class="ee-button" id="setThreshold">Set Threshold</button>
-        </div>
-      </div>
-      <div class="deviceWrapper" id="deviceWrapper">
-        <div class="cardWrapper" id="cardWrapper"></div>
-      </div>
-
-      <div class="thresholdCard" id="thresholdCard">
-        <button class="closeButton" onclick="closeWindowHandler()">X</button>
-        <div class="tCardHeader">
-          <h2>Threshold Value</h2>
-          <p>Here you can set threshold value of each and every parameter</p>
-        </div>
-        <div class="tCardBody">
-          <select
-            class="selectBox"
-            id="deviceIds"
-            onchange="setParaHandler(this)"
-          ></select>
-          <select
-            class="selectBox"
-            id="devicePara"
-            onchange="setThresholdValue()"
-          ></select>
-
-          <input
-            class="ee-input"
-            type="number"
-            name="thresholdValue"
-            id="thresholdValue"
-          />
-
-          <button
-            class="thresholdButton ee-button"
-            onclick="validateThresholdHandler()"
-          >
-            Submit
-          </button>
-          <p class="validationMsg" id="validationMsg"></p>
-        </div>
-      </div>
+    <div class="deviceWrapper" id="deviceWrapper">
+      <div class="cardWrapper" id="cardWrapper"></div>
     </div>
 
-    <script src="./assets/script/api.js"></script>
-  </body>
+    <div class="thresholdCard" id="thresholdCard">
+      <button class="closeButton" onclick="closeWindowHandler()">X</button>
+      <div class="tCardHeader">
+        <h2>Threshold Value</h2>
+        <p>Here you can set threshold value of each and every parameter</p>
+      </div>
+      <div class="tCardBody">
+        <select class="selectBox" id="deviceIds" onchange="setParaHandler(this)"></select>
+        <select class="selectBox" id="devicePara"></select>
+
+        <input class="ee-input" type="text" name="thresholdValue" id="thresholdValue" />
+
+        <button class="thresholdButton ee-button" onclick="validateThresholdHandler()">
+          Submit
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="./assets/script/api.js"></script>
+</body>
+
 </html>

@@ -4,12 +4,30 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Device ID</title>
+
+    <style>
+        .ee-button {
+            all: unset;
+            background-color: #0072bc;
+            padding: 5px 10px;
+            border-radius: 5px;
+            color: white;
+            font-family: 'Alegreya Sans SC', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            box-shadow: 15px 15px 25px #2224;
+        }
+
+        .ee-button:active {
+            box-shadow: none;
+        }
+    </style>
 </head>
 
 <body>
     <center>
         <h3 style="padding-top: 15px;">
-            Device ID
+            Enter Device ID
         </h3>
 
         <input type="text" id="pid" placeholder="Enter Device ID">
@@ -17,7 +35,7 @@
         <input type="text" id="alias" placeholder="Enter Alias">
         <br>
         <br>
-        <button id="device_pid">Save</button>
+        <button class="ee-button" id="device_pid">Save</button>
     </center>
 
     <script>
@@ -27,7 +45,7 @@
         document.getElementById("device_pid").addEventListener("click", receiveID);
 
         function receiveID() {
-            let storedData=JSON.parse(localStorage.getItem('info')) || [];
+            let storedData = JSON.parse(localStorage.getItem('info')) || [];
             const pid = document.querySelector('#pid').value;
             const alias = document.querySelector('#alias').value;
             var info = { "pid": pid, "alias": alias };
@@ -35,12 +53,12 @@
             console.log(info);
             // Put the object into storage
             localStorage.setItem('info', JSON.stringify(storedData));
-            
+
             console.log(ipcRenderer);
             ipcRenderer.send('pid:added', 1);
 
             // let id="ENE0124";
-            
+
             // storedData=storedData.filter(item=>item.pid!==id);
             // localStorage.setItem('info', JSON.stringify(storedData));
 

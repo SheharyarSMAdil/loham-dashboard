@@ -17,6 +17,8 @@ app.on('ready', () => {
             nodeIntegration: true,
             contextIsolation: false
         },
+        // width: ,
+        // height: ,
         title: 'Online Dashboard'
     })
 
@@ -26,6 +28,8 @@ app.on('ready', () => {
         protocol: 'file',
         slashes: true
     }))
+
+    mainWindow.maximize();
 
     // quit app when closed
     mainWindow.on('close', () => {
@@ -69,9 +73,9 @@ function createDeleteWindow() {
             nodeIntegration: true,
             contextIsolation: false
         },
-        width: 400,
-        height: 420,
-        title: 'Delete Device ID'
+        width: 780,
+        height: 500,
+        title: 'Edit Device ID'
     });
     // Load HTML into window
     deleteWindow.loadURL(url.format({
@@ -107,7 +111,7 @@ const mainMenuTemplate = [
                 }
             },
             {
-                label: 'Delete Device ID',
+                label: 'Edit Device ID',
                 click() {
                     createDeleteWindow();
                 }

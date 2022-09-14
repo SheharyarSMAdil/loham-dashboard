@@ -45,8 +45,12 @@ const fetchServerData = () => {
 
           cardContent += `<div class="card" data-threshold=${status}>
                       <div class="cardHeader">
-                          <p>${item[0].split("_").join(".")}</p>
-                      </div>
+                      `;
+          if (item[0] == 'hf')
+            cardContent += `<p>Fluorine</p>`
+          else
+            cardContent += `<p>${item[0].split("_").join(".")}</p>`;
+          cardContent += `</div>
                       <div class="cardBody">
                           <p>${item[1]}</p>
                       </div>
@@ -74,7 +78,7 @@ const validateThresholdHandler = () => {
   let thresholdData = JSON.parse(localStorage.getItem("threshold")) || {};
   //   thresholdData = [];
   if (threshold == '')
-    threshold = "1000";
+    threshold = "10000";
   if (thresholdData[id]) {
     thresholdData[id] = { ...thresholdData[id], [para]: threshold };
   } else {
@@ -88,7 +92,7 @@ const showThresholdCard = () => {
   document.getElementById("thresholdCard").style.transform =
     "scale(1) translate(-50%,-50%)";
   deviceList = JSON.parse(localStorage.getItem("info")).map(
-    (device) => device.pid
+    (device) => `${device.pid} (${device.alias})`
   );
   console.log(deviceList);
   document.getElementById("deviceIds").innerHTML = "";

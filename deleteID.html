@@ -3,7 +3,7 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delete Device ID</title>
+    <title>Edit Device ID</title>
 
     <style>
         table {
@@ -22,6 +22,22 @@
 
         tr:nth-child(even) {
             background-color: #f2f2f2;
+        }
+
+        .ee-button {
+            all: unset;
+            background-color: #0072bc;
+            padding: 5px 10px;
+            border-radius: 5px;
+            color: white;
+            font-family: 'Alegreya Sans SC', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            box-shadow: 15px 15px 25px #2224;
+        }
+
+        .ee-button:active {
+            box-shadow: none;
         }
     </style>
 </head>
@@ -62,23 +78,65 @@
                 row.appendChild(headerCell);
             }
 
+            let pid = '';
+            let _pid = new Array();
+
             for (var i = 0; i < storedData.length; i++) {
-                let pid = '';
                 row = table.insertRow(-1);
                 for (var j = 0; j < columnCount - 1; j++) {
                     var cell = row.insertCell(-1);
                     var myData = Object.values(storedData[i]);
-                    cell.innerHTML = myData[j];
-                    if (j == 0)
+                    if (j == 0) {
+                        cell.innerHTML = myData[j];
                         pid = myData[j];
+                    }
+                    else
+                        cell.innerHTML = `<input type="text" value="${myData[j]}" id="_${pid}" disabled>`;
                 }
                 var removeBtn = row.insertCell(-1);
-                removeBtn.innerHTML = `<button id="${pid}" onclick="deleteID(this.id)">Remove</button>`;
+                removeBtn.innerHTML = `<button class="ee-button" id="__${pid}" onclick="saveID(this.id)">Save</button>
+                                       <button class="ee-button" id="___${pid}" onclick="editID(this.id)">Edit</button>&nbsp;&nbsp;
+                                       <button class="ee-button" id="${pid}" onclick="deleteID(this.id)">Remove</button>`;
+                _pid[i] = pid;
             }
 
             var dvTable = document.getElementById("dvTable");
             dvTable.innerHTML = "";
             dvTable.appendChild(table);
+
+            for (var i = 0; i < storedData.length; i++)
+                document.getElementById("__" + _pid[i]).style.display = "none";
+
+        }
+
+        function editID(___pid) {
+            const __pid = ___pid.substring(1)
+            const _pid = ___pid.substring(2)
+            document.getElementById(___pid).style.display = "none";
+            document.getElementById(__pid).style.display = "block";
+            document.getElementById(__pid).style.removeProperty('display');
+            document.getElementById(_pid).disabled = false
+        }
+
+        function saveID(pid) {
+            pid = pid.substring(1)
+
+            let storedData = JSON.parse(localStorage.getItem('info')) || [];
+            let updatedAlias = document.getElementById(pid).value
+            pid = pid.substring(1)
+
+            console.log(pid)
+            console.log(updatedAlias)
+
+            storedData = storedData.filter(item => item.pid !== pid);
+
+            var info = { "pid": pid, "alias": updatedAlias };
+            storedData.push(info);
+            console.log(info);
+            // Put the object into storage
+            localStorage.setItem('info', JSON.stringify(storedData));
+
+            renderPIDs()
         }
 
         function deleteID(pid) {

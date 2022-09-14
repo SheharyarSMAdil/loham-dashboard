@@ -33,6 +33,7 @@
 body {
     background-color: var(--background-color);
     padding-bottom: 20px;
+    font-family: 'Comfortaa', cursive;
 }
 
 .container {
@@ -51,12 +52,15 @@ body {
 
 .head {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: flex-start;
     gap: 1rem;
     position: fixed;
-    left: 20px;
-    top: 3px;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    backdrop-filter: blur(20px);
+    border:2px solid #fff7;
 }
 
 .company{
@@ -76,6 +80,19 @@ body {
     color: #0d1953;
 } */
 
+.autoScroll,.autoFetch{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.inputLabel{
+    font-size: 0.7rem;
+}
+
+
 .ee-button {
     all: unset;
     background-color: var(--theme-color);
@@ -92,6 +109,71 @@ body {
     box-shadow: none;
 }
 
+.autoScroll input,.autoFetch input{
+    display: inline-block;
+    width: auto;
+}
+
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 25px;
+  }
+  
+  .switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 17px;
+    width: 17px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #2196F3;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
 
 #downloadData {
     margin-left: auto;

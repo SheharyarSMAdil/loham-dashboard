@@ -1,14 +1,42 @@
 {
   "name": "ees_online_dashboard",
-  "version": "1.0.0",
+  "version": "2.1.0",
   "description": "Online Dashboard",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "install": "electron-rebuild",
+    "dist:linux": "electron-builder --linux",
+    "dist": "electron-builder"
   },
-  "author": "Ahad",
+  "author": "Sheharyar,Ahad",
   "license": "ISC",
   "dependencies": {
+   
+  },
+  "devDependencies": {
+    "electron-builder": "^23.3.3",
     "electron": "^20.1.0"
+  },
+  "build": {
+    "appId": "com.ees.eescomwin",
+    "compression": "maximum",
+    "productName": "Eescom-win",
+    "target": [
+      {
+        "target": "nsis",
+        "arch": [
+          "x64",
+          "ia32"
+        ]
+      }
+    ],
+    "win": {
+      "icon": "./build/EESCOM_win_icon.png"
+    },
+    "nsis": {
+      "allowToChangeInstallationDirectory": true,
+      "oneClick": false
+    }
   }
 }

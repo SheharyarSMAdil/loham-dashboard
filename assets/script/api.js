@@ -3,6 +3,20 @@ const { ipcRenderer } = electron;
 
 ipcRenderer.on("pid:added", fetchID);
 ipcRenderer.on("pid:deleted", fetchID);
+console.log(localStorage.getItem("autoFetch") === "true");
+
+let autoFetchFlag = localStorage.getItem("autoFetch") || "true";
+let autoScrollFlag = localStorage.getItem("autoScroll") || "true";
+
+autoFetchFlag = autoFetchFlag === "true";
+autoScrollFlag = autoScrollFlag === "true";
+
+document.getElementById("autoFetch").checked = autoFetchFlag;
+document.getElementById("autoScroll").checked = autoScrollFlag;
+
+var allParaStructure = [];
+var steps = 80;
+var previousScrollY = -1;
 
 const fetchServerData = () => {
   allParaStructure = [];
@@ -11,7 +25,6 @@ const fetchServerData = () => {
   document.getElementById("deviceWrapper").innerHTML = "";
 
   storedData.forEach((info) => {
-
     let cardContent = "";
     // const serverData = async () => {
     fetch("https://api.enggenv.com/api/fetchdata?id=" + info.pid)
@@ -46,10 +59,8 @@ const fetchServerData = () => {
           cardContent += `<div class="card" data-threshold=${status}>
                       <div class="cardHeader">
                       `;
-          if (item[0] == 'hf')
-            cardContent += `<p>Fluorine</p>`
-          else
-            cardContent += `<p>${item[0].split("_").join(".")}</p>`;
+          if (item[0] == "hf") cardContent += `<p>Fluorine</p>`;
+          else cardContent += `<p>${item[0].split("_").join(".")}</p>`;
           cardContent += `</div>
                       <div class="cardBody">
                           <p>${item[1]}</p>
@@ -77,8 +88,7 @@ const validateThresholdHandler = () => {
   let threshold = document.getElementById("thresholdValue").value;
   let thresholdData = JSON.parse(localStorage.getItem("threshold")) || {};
   //   thresholdData = [];
-  if (threshold == '')
-    threshold = "10000";
+  if (threshold == "") threshold = "10000";
   if (thresholdData[id]) {
     thresholdData[id] = { ...thresholdData[id], [para]: threshold };
   } else {
@@ -133,8 +143,11 @@ function fetchID(e, status) {
 }
 
 getInfo = () => {
-  document.getElementById("deviceWrapper").innerHTML = "";
-  if (window.navigator.onLine && JSON.parse(localStorage.getItem("info"))) {
+  if (
+    window.navigator.onLine &&
+    JSON.parse(localStorage.getItem("info") && autoFetchFlag)
+  ) {
+    document.getElementById("deviceWrapper").innerHTML = "";
     fetchServerData();
   } else {
     if (window.navigator.onLine) {
@@ -148,20 +161,32 @@ getInfo = () => {
 
 getInfo();
 
-var allParaStructure = [];
+(autoScroll = () => {
+  setTimeout(() => {
+    if (autoScrollFlag) {
+      if (previousScrollY !== window.scrollY) {
+        previousScrollY = window.scrollY;
+        scroll(0, window.scrollY + steps);
+      } else {
+        steps *= -1;
+        previousScrollY = -1;
+      }
+    }
+    autoScroll();
+  }, 2000);
+})();
 
+const toggleAutoScroll = (e) => {
+  autoScrollFlag = e.checked;
+  localStorage.setItem("autoScroll", e.checked.toString());
+};
+const toggleAutoFetch = (e) => {
+  autoFetchFlag = e.checked;
+  localStorage.setItem("autoFetch", e.checked.toString());
+  getInfo();
+};
 
-
-
-
-
-
-
-
-
-
-
-
+// autoScroll();
 
 // const electron = require("electron");
 // const { ipcRenderer } = electron;

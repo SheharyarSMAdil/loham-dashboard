@@ -3,14 +3,16 @@ const { ipcRenderer } = electron;
 
 ipcRenderer.on("pid:added", fetchID);
 ipcRenderer.on("pid:deleted", fetchID);
-console.log(localStorage.getItem("autoFetch") === "true");
 
+// set true as default if not previously
 let autoFetchFlag = localStorage.getItem("autoFetch") || "true";
 let autoScrollFlag = localStorage.getItem("autoScroll") || "true";
 
+// Convert string to bool
 autoFetchFlag = autoFetchFlag === "true";
 autoScrollFlag = autoScrollFlag === "true";
 
+//set this value to toggle input to sync the state
 document.getElementById("autoFetch").checked = autoFetchFlag;
 document.getElementById("autoScroll").checked = autoScrollFlag;
 
@@ -18,6 +20,7 @@ var allParaStructure = [];
 var steps = 80;
 var previousScrollY = -1;
 
+// fetch data from server of all the ids which are added in this dashboard
 const fetchServerData = () => {
   allParaStructure = [];
   let thresholdData = JSON.parse(localStorage.getItem("threshold")) || {};
@@ -128,13 +131,6 @@ const setParaHandler = (e) => {
   });
 };
 
-document
-  .getElementById("downloadData")
-  .addEventListener("click", fetchServerData);
-document
-  .getElementById("setThreshold")
-  .addEventListener("click", showThresholdCard);
-
 function fetchID(e, status) {
   console.log(status);
   localStorage.setItem("status", status);
@@ -142,7 +138,8 @@ function fetchID(e, status) {
   info.innerHTML = localStorage.getItem("info");
 }
 
-getInfo = () => {
+//auto call itself after given minutes
+(getInfo = () => {
   if (
     window.navigator.onLine &&
     JSON.parse(localStorage.getItem("info") && autoFetchFlag)
@@ -152,15 +149,19 @@ getInfo = () => {
   } else {
     if (window.navigator.onLine) {
     }
+    console.log(JSON.parse(localStorage.getItem("info")));
+    if (!JSON.parse(localStorage.getItem("info"))) {
+      document.getElementById("deviceWrapper").innerHTML =
+        "<h3 style='position:absolute; top:50%; left:50%; transform:translate(-50%,-50%)'>No Device Found, Please add your device from above options menu";
+    }
   }
 
   setTimeout(() => {
     getInfo();
   }, 20000);
-};
+})();
 
-getInfo();
-
+//auto call itself after given minutes
 (autoScroll = () => {
   setTimeout(() => {
     if (autoScrollFlag) {
@@ -185,6 +186,14 @@ const toggleAutoFetch = (e) => {
   localStorage.setItem("autoFetch", e.checked.toString());
   getInfo();
 };
+
+// sets click event listeners for fetchServerData & showThresholdCard
+document
+  .getElementById("downloadData")
+  .addEventListener("click", fetchServerData);
+document
+  .getElementById("setThreshold")
+  .addEventListener("click", showThresholdCard);
 
 // autoScroll();
 

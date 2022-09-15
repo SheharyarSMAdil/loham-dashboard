@@ -3,7 +3,7 @@ const url = require('url')
 const path = require('path')
 
 // SET ENV
-process.env.NODE_ENV = 'development';
+process.env.NODE_ENV = 'production';
 process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = false;
 
 const { app, BrowserWindow, Menu, ipcMain } = electron
@@ -17,8 +17,7 @@ app.on('ready', () => {
             nodeIntegration: true,
             contextIsolation: false
         },
-        // width: ,
-        // height: ,
+        icon: './build/lohum-icon.ico',
         title: 'Online Dashboard'
     })
 
@@ -31,6 +30,7 @@ app.on('ready', () => {
 
     mainWindow.maximize();
 
+
     // quit app when closed
     mainWindow.on('close', () => {
         app.quit()
@@ -41,7 +41,24 @@ app.on('ready', () => {
     // Insert Menu
     Menu.setApplicationMenu(mainMenu);
 
+    mainWindow.setMenuBarVisibility(false)
+
 })
+
+// app.whenReady().then(() => {
+
+//     globalShortcut.register('F11', () => {
+//         var fullScreen;
+
+//         fullScreen = !mainWindow.isFullScreen();
+//         mainWindow.setFullScreen(fullScreen);
+//     })
+//     globalShortcut.register('F', () => {
+//         var fullScreen;
+//         fullScreen = !mainWindow.isFullScreen();
+//         mainWindow.setFullScreen(fullScreen);
+//     })
+// })
 
 // Handle create add window
 function createAddWindow() {
@@ -87,6 +104,18 @@ function createDeleteWindow() {
     deleteWindow.setMenuBarVisibility(false)
 }
 
+// Catch pid:add
+ipcMain.on('pid:add', function (e, status) {
+    createAddWindow();
+    // mainWindow.webContents.send('pid:add', status);
+});
+
+// Catch pid:edit
+ipcMain.on('pid:edit', function (e, status) {
+    createDeleteWindow();
+    // mainWindow.webContents.send('pid:add', status);
+});
+
 // Catch pid:added
 ipcMain.on('pid:added', function (e, status) {
     mainWindow.webContents.send('pid:added', status);
@@ -122,6 +151,15 @@ const mainMenuTemplate = [
                     'Ctrl+Q',
                 click() {
                     app.quit();
+                }
+            },
+            {
+                label: 'Toggle &Full Screen',
+                accelerator: 'F',
+                click: () => {
+                    var fullScreen;
+                    fullScreen = !mainWindow.isFullScreen();
+                    mainWindow.setFullScreen(fullScreen);
                 }
             }
         ]

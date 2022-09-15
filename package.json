@@ -19,9 +19,9 @@
     "electron": "^20.1.0"
   },
   "build": {
-    "appId": "com.ees.eescomwin",
+    "appId": "com.ees.lohumdash",
     "compression": "maximum",
-    "productName": "Eescom-win",
+    "productName": "LohumDash",
     "target": [
       {
         "target": "nsis",
@@ -32,7 +32,7 @@
       }
     ],
     "win": {
-      "icon": "./build/EESCOM_win_icon.png"
+      "icon": "./build/lohum-icon.png"
     },
     "nsis": {
       "allowToChangeInstallationDirectory": true,

@@ -38,6 +38,9 @@ const fetchServerData = () => {
         const lastUpdate = data.ts_server;
         delete data.ts_server;
 
+        const date = lastUpdate.substring(0, lastUpdate.indexOf(' '));
+        const time = lastUpdate.substring(lastUpdate.indexOf(' ') + 1);
+
         // console.log(data);
         let deviceWrapper = document.createElement("div");
         deviceWrapper.setAttribute("class", "deviceWrapper");
@@ -71,7 +74,7 @@ const fetchServerData = () => {
         allParaStructure.push({ id: info.pid, para: [...paraList] });
         document.getElementById(
           "deviceWrapper"
-        ).innerHTML += `<label><strong>${info.pid}</strong> (${info.alias})<span class="lastUpdate">(Last Update: ${lastUpdate})</span></label><div class="cardWrapper">  ${cardContent}</div>`;
+        ).innerHTML += `<label><strong>${info.pid}</strong> (${info.alias})<span class="lastUpdate">(<b>Date: ${date}, Time: ${time}</b>)</span></label><div class="cardWrapper">  ${cardContent}</div>`;
       })
       .catch((err) => console.error(err));
   });
@@ -81,6 +84,15 @@ const closeWindowHandler = () => {
   document.getElementById("thresholdCard").style.transform =
     "scale(0) translate(0%,500%)";
 };
+
+const addId = () => {
+  ipcRenderer.send('pid:add', 0);
+}
+
+const editId = () => {
+  ipcRenderer.send('pid:edit', 0);
+}
+
 
 const validateThresholdHandler = () => {
   let id = document.getElementById("deviceIds").value;
@@ -134,6 +146,12 @@ document
 document
   .getElementById("setThreshold")
   .addEventListener("click", showThresholdCard);
+document
+  .getElementById("addId")
+  .addEventListener("click", addId);
+document
+  .getElementById("editId")
+  .addEventListener("click", editId);
 
 function fetchID(e, status) {
   console.log(status);
